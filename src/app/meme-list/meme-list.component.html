@@ -1,5 +1,5 @@
 <mat-grid-list cols="4" gutterSize="10">
-  <mat-grid-tile class="meme-box" *ngFor="let meme of meme_list" [rowspan]="meme.ratio">
+  <mat-grid-tile class="meme-box" *ngFor="let meme of filtered_meme_list" [rowspan]="meme.ratio">
     <mat-grid-tile-header>{{meme.name}}</mat-grid-tile-header>
     <img class="meme-image" [src]="meme.url" />
   </mat-grid-tile>
