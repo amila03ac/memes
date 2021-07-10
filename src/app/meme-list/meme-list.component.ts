@@ -14,8 +14,11 @@ export class MemeListComponent implements OnInit {
   constructor(private service: MemeListService) { }
 
   ngOnInit(): void {
-    this.service.getMemes().then((memes: Array<Meme>)=>
+    this.service.getMemes().then((memes: Array<Meme>)=>{
       this.meme_list = memes
-    );
+      this.meme_list.forEach(meme => {
+        meme.ratio = Math.ceil(meme.height/meme.width)
+      })
+    })
   }
 }
