@@ -1,3 +1,6 @@
-<div *ngFor="let meme of meme_list" >
-  <app-meme-card [meme]=meme></app-meme-card>
-</div>
+<mat-grid-list cols="4" gutterSize="10">
+  <mat-grid-tile  *ngFor="let meme of meme_list" [rowspan]="meme.height/meme.width | number: '1.0-0'">
+    <mat-grid-tile-header>{{meme.name}} - [{{meme.height}}*{{meme.width}}]</mat-grid-tile-header>
+    <img class="meme-image" [src]="meme.url" />
+  </mat-grid-tile>
+</mat-grid-list>
