@@ -1,11 +1,42 @@
 <div class="meme-header">
-  <div class="title">{{title}}</div>
-  <mat-form-field class="search-box" appearance="fill">
-    <mat-label>Search memes</mat-label>
-    <input matInput type="text" [(ngModel)]="search_text">
-    <button *ngIf="search_text" matSuffix mat-icon-button aria-label="Clear" (click)="search_text=''">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
+  <mat-grid-list [cols]="2" gutterSize="10" rowHeight="60px">
+    <mat-grid-tile>
+      <div class="header-tile title">
+        <span>{{title}}</span>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="header-tile controls">
+        <mat-grid-list [cols]="2" gutterSize="10" rowHeight="60px">
+          <mat-grid-tile>
+            <div class="control-tile layout-options" title='Change layout'>
+              <mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="columns">
+                <mat-button-toggle *ngFor='let option of column_options' [value]="option.value">
+                  <mat-icon>{{option.icon}}</mat-icon>
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="control-tile search">
+              <input class="search-input" type="search" [(ngModel)]="search_text" placeholder="Search">
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <!-- <div class="title">{{title}}</div>
+  <div class="controls">
+    <div class="search-box">
+      <input class="search-input" type="search" [(ngModel)]="search_text" placeholder="Search">
+    </div>
+    <div class="column-options" title='Change grid layout'>
+      <button [ngClass]="{'selected': option.value===columns}" mat-icon-button *ngFor='let option of column_options'
+        (click)="columns=option.value;">
+        <mat-icon>{{option.icon}}</mat-icon>
+      </button>
+    </div>
+  </div> -->
 </div>
-<app-meme-list [search_text]="search_text"></app-meme-list>
+<app-meme-list [search_text]="search_text" [columns]=columns></app-meme-list>
